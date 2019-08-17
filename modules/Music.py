@@ -2,7 +2,10 @@
 from datetime import datetime
 import re
 
-WORDS = ["TIME"]
+from player import Player
+music_player = Player()
+
+WORDS = ["MUSIC"]
 
 
 def handle(text, mic):
@@ -15,9 +18,7 @@ def handle(text, mic):
         profile -- contains information related to the user (e.g., phone
                    number)
     """
-
-    now = datetime.now()
-    mic.say("The time is {0}".format(now.strftime("%-I:%M %p")))
+    music_player.play_music()
 
 
 def isValid(text):
@@ -27,4 +28,4 @@ def isValid(text):
         Arguments:
         text -- user-input, typically transcribed speech
     """
-    return bool(re.search(r'\btime\b', text, re.IGNORECASE))
+    return bool(re.search(r'\bmusic\b', text, re.IGNORECASE))

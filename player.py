@@ -19,8 +19,6 @@ class Player:
         self.musicPaused = False
 
     def say(self, text):
-
-        print("This say method has been called.....")
         SONG_END = pygame.USEREVENT + 1
 
         tts = gTTS(text, lang='en')
@@ -50,11 +48,11 @@ class Player:
 
 
     def resume_music(self):
-        print("Resuming music...")
 
         self.start = self.start + self.music_position/1000.0
 
         if self.musicPaused:
+            print("Resuming music...")
             self.musicPaused = False
 
             sound_player.music.load("./Music/{0}".format(self.music_files[self.music_index]))

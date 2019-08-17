@@ -1,6 +1,7 @@
 import snowboydecoder
 import sys
 import signal
+import os
 
 import logging
 import pkgutil
@@ -53,6 +54,20 @@ class Initiator:
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
+        os.remove(fname)
+        self.clearOutWaveFiles()
+
+    def clearOutWaveFiles(self):
+        try:
+            directory_name = os.getcwd()
+            wavefiles_to_delete = os.listdir(directory_name)
+
+            for item in wavefiles_to_delete:
+                if item.endswith(".wav"):
+                    os.remove(os.path.join(directory_name, item))
+        except OSError:
+            print("Files maybe deleted but something went wrong")
+
 
     # @classmethod
     def get_modules(self):
@@ -88,7 +103,6 @@ class Initiator:
 
     def query(self, text):
 
-        print("Text from STT is {0}".format(text))
         """
         Passes user input to the appropriate module, testing it against
         each candidate module's isValid function.
@@ -96,7 +110,6 @@ class Initiator:
         Arguments:
         text -- user input, typically speech, to be parsed by a module
         """
-        print("Modules are: ",set(self.modules))
         for module in self.modules:
             if module.isValid(text):
                 print("texts is valid::::", text)
