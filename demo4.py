@@ -147,6 +147,7 @@ def play_music():
 
 
 def resume_music():
+    print("Resuming music...")
     global start
     global music_position
     start = start + music_position/1000.0
@@ -157,14 +158,14 @@ def resume_music():
 
         Player.music.load("./Music/{0}".format(music_files[music_index]))
         Player.music.play(-1, start)
-    #
+
     # musicPlayer.resume()
 
 def pause_music():
     if Player.music.get_busy():
         print("Pausing the music....")
         global music_position
-        # player.music.fadeout(3/1000)
+        # Player.music.fadeout(2000)
         Player.music.pause()
         music_position = Player.music.get_pos()
         print("Music position is {0}".format(music_position))
@@ -183,10 +184,12 @@ def play_next():
     # musicPlayer.play_song("./Music/{0}".format(music_files[music_index]))
 
 def stop_music():
-    # Player.music.stop()
-    musicPlayer.stop()
+    Player.music.stop()
+    # musicPlayer.stop()
 
 def Say(text):
+
+    print("This say method has been called.....")
     SONG_END = pygame.USEREVENT + 1
 
     tts = gTTS(text, lang='en')
@@ -199,11 +202,14 @@ def Say(text):
     Player.music.set_endevent(SONG_END)
     # Player.music.set_volume(0.4)
 
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(100)
+
     while True:
-        if Player.music.get_endevent() == SONG_END and not Player.music.get_busy():
-            print("Say has finally ended.......Yippi")
+        if Player.music.get_endevent() == SONG_END:
             resume_music()
             break
+
 
 
 def processIntent(intent, response):
