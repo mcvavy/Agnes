@@ -121,7 +121,7 @@ def audioRecorderCallback(fname):
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
     os.remove(fname)
-    # clearOutWaveFiles()
+    clearOutWaveFiles()
 
 def clearOutWaveFiles():
     try:
