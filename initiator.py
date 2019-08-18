@@ -141,7 +141,7 @@ if __name__ == '__main__':
 
     print("*******************************************************")
     print("*    Agnes - Your intelligent personal assistant      *")
-    print("*         (c) 2019 Michael Oyibo *                     ")
+    print("*         (c) 2019 Michael Oyibo                      *")
     print("*******************************************************")
 
 
@@ -172,7 +172,6 @@ if __name__ == '__main__':
     detector = snowboydecoder.HotwordDetector(model, sensitivity=0.38)
     print('Listening... Press Ctrl+C to exit')
 
-    player = Player()
     initiator = Initiator()
 
     # main loop

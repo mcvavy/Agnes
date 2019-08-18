@@ -1,5 +1,3 @@
-# -*- coding: utf-8-*-
-from datetime import datetime
 import re
 
 from player import Player
@@ -18,7 +16,15 @@ def handle(text, mic):
         profile -- contains information related to the user (e.g., phone
                    number)
     """
-    music_player.play_music()
+
+
+    if bool(re.search(r'\bshuffle\b', text, re.IGNORECASE)):
+        music_player.play_shuffle()
+
+    elif bool(re.search(r'\bnext\b', text, re.IGNORECASE)) or bool(re.search(r'\bskip\b', text, re.IGNORECASE)):
+        music_player.play_next()
+    else:
+        music_player.play_music()
 
 
 def isValid(text):
@@ -28,4 +34,4 @@ def isValid(text):
         Arguments:
         text -- user-input, typically transcribed speech
     """
-    return bool(re.search(r'\bmusic\b', text, re.IGNORECASE))
+    return bool(re.search(r'\bmusic\b', text, re.IGNORECASE)) or bool(re.search(r'\bsong\b', text, re.IGNORECASE))

@@ -156,7 +156,7 @@ class HotwordDetector(object):
               pause_music_player = None,
               sleep_time=0.03,
               audio_recorder_callback=None,
-              silent_count_threshold=8,
+              silent_count_threshold=3,
               recording_timeout=100):
         """
         Start the voice detector. For every `sleep_time` second it checks the
@@ -178,6 +178,7 @@ class HotwordDetector(object):
                                         been recorded. The function will be
                                         passed the name of the file where the
                                         phrase was recorded.
+                                        --changed from 8 to 3
         :param silent_count_threshold: indicates how long silence must be heard
                                        to mark the end of a phrase that is
                                        being recorded.

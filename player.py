@@ -1,4 +1,5 @@
 import os
+from random import randrange
 
 from gtts import gTTS
 from io import BytesIO
@@ -41,7 +42,7 @@ class Player:
 
     def play_music(self):
         print("Playing music now.......")
-        self.music_index += 1
+        # self.music_index += 1
 
         sound_player.music.load("./Music/{0}".format(self.music_files[self.music_index]))
         sound_player.music.play()
@@ -73,6 +74,10 @@ class Player:
         sound_player.music.load("./Music/{0}".format(self.music_files[self.music_index]))
         sound_player.music.play()
 
+    def play_shuffle(self):
+        self.music_position = randrange(len(self.music_files))
+        sound_player.music.load("./Music/{0}".format(self.music_files[self.music_position]))
+        sound_player.music.play()
 
     def stop_music(self):
         sound_player.music.stop()
