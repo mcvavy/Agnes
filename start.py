@@ -132,7 +132,7 @@ class Initiator:
                            "phrases: %r", text)
 
     def pause_music(self):
-        return self.player.pause_music()
+        self.player.pause_music()
 
 
 if __name__ == '__main__':

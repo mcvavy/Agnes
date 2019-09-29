@@ -19,6 +19,16 @@ class Player:
 
         self.musicPaused = False
 
+    def set_volume(self, volume):
+        if volume == "low":
+            sound_player.music.set_volume(0.2)
+        elif volume == "medium":
+            sound_player.music.set_volume(0.5)
+        elif volume == "high":
+            sound_player.music.set_volume(1)
+
+        self.resume_music()
+
     def say(self, text):
         SONG_END = pygame.USEREVENT + 1
 
@@ -49,7 +59,7 @@ class Player:
 
 
     def resume_music(self):
-
+        print("Resuming music now.......")
         self.start = self.start + self.music_position/1000.0
 
         if self.musicPaused:

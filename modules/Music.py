@@ -1,7 +1,7 @@
 import re
 
-from player import Player
-music_player = Player()
+# from player import Player
+# mic = Player()
 
 WORDS = ["MUSIC"]
 
@@ -19,12 +19,23 @@ def handle(text, mic):
 
 
     if bool(re.search(r'\bshuffle\b', text, re.IGNORECASE)):
-        music_player.play_shuffle()
-
+        mic.play_shuffle()
     elif bool(re.search(r'\bnext\b', text, re.IGNORECASE)) or bool(re.search(r'\bskip\b', text, re.IGNORECASE)):
-        music_player.play_next()
+        mic.play_next()
+    elif bool(re.search(r'\bpause\b', text, re.IGNORECASE)):
+        mic.pause_music()
+    elif bool(re.search(r'\bstop\b', text, re.IGNORECASE)):
+        mic.stop_music()
+    elif bool(re.search(r'\bvolume\b', text, re.IGNORECASE)):
+        if bool(re.search(r'\bhigh\b', text, re.IGNORECASE)):
+            mic.set_volume("high")
+        if bool(re.search(r'\blow\b', text, re.IGNORECASE)):
+            mic.set_volume("low")
+        if bool(re.search(r'\bmedium\b', text, re.IGNORECASE)):
+            mic.set_volume("medium")
+
     else:
-        music_player.play_music()
+        mic.play_music()
 
 
 def isValid(text):
