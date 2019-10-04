@@ -16,8 +16,6 @@ def handle(text, mic):
         profile -- contains information related to the user (e.g., phone
                    number)
     """
-
-
     if bool(re.search(r'\bshuffle\b', text, re.IGNORECASE)):
         mic.play_shuffle()
     elif bool(re.search(r'\bnext\b', text, re.IGNORECASE)) or bool(re.search(r'\bskip\b', text, re.IGNORECASE)):
@@ -29,14 +27,15 @@ def handle(text, mic):
     elif bool(re.search(r'\bvolume\b', text, re.IGNORECASE)):
         if bool(re.search(r'\bhigh\b', text, re.IGNORECASE)):
             mic.set_volume("high")
+            mic.say("Music volume high")
         if bool(re.search(r'\blow\b', text, re.IGNORECASE)):
             mic.set_volume("low")
+            mic.say("Music volume low")
         if bool(re.search(r'\bmedium\b', text, re.IGNORECASE)):
             mic.set_volume("medium")
-
+            mic.say("Music volume medium")
     else:
         mic.play_music()
-
 
 def isValid(text):
     """

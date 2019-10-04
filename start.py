@@ -55,7 +55,7 @@ class Initiator:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
         os.remove(fname)
-        self.clearOutWaveFiles()
+        # self.clearOutWaveFiles()
 
     def clearOutWaveFiles(self):
         try:
@@ -169,7 +169,7 @@ if __name__ == '__main__':
     # capture SIGINT signal, e.g., Ctrl+C
     signal.signal(signal.SIGINT, signal_handler)
 
-    detector = snowboydecoder.HotwordDetector(model, sensitivity=0.38)
+    detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5) #befoire 0.38
     print('Listening... Press Ctrl+C to exit')
 
     initiator = Initiator()

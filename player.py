@@ -27,8 +27,6 @@ class Player:
         elif volume == "high":
             sound_player.music.set_volume(1)
 
-        self.resume_music()
-
     def say(self, text):
         SONG_END = pygame.USEREVENT + 1
 
@@ -52,7 +50,6 @@ class Player:
 
     def play_music(self):
         print("Playing music now.......")
-        # self.music_index += 1
 
         sound_player.music.load("./Music/{0}".format(self.music_files[self.music_index]))
         sound_player.music.play()
@@ -73,6 +70,7 @@ class Player:
         if sound_player.music.get_busy():
             print("Pausing the music....")
             sound_player.music.pause()
+            print("==> Music is pausing now...")
             self.music_position = sound_player.music.get_pos()
             print("Music position is {0}".format(self.music_position))
             self.musicPaused = True
